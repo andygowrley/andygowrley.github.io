@@ -1,30 +1,52 @@
-// Get a reference to the button element by its ID
-const button = document.getElementById('myButton');
+document.addEventListener('DOMContentLoaded', () => {
+    // Smooth scrolling for navigation links
+    const navLinks = document.querySelectorAll('nav a');
 
-// Check if the button exists before trying to add an event listener
-if (button) {
-    // Add an event listener to the button
-    button.addEventListener('click', function() {
-        // When the button is clicked, execute this function
-        alert('You clicked the button! Hello from JavaScript!');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
 
-        // You could also change text on the page, like this:
-        // const introParagraph = document.querySelector('.intro p');
-        // if (introParagraph) {
-        //     introParagraph.textContent = 'The button has been clicked! This text changed.';
-        // }
-
-        // Or change styles:
-        // button.style.backgroundColor = 'purple';
+            window.scrollTo({
+                top: targetSection.offsetTop - 60, // Adjust for fixed header
+                behavior: 'smooth'
+            });
+        });
     });
-} else {
-    console.warn("Button with ID 'myButton' not found.");
+
+    // Add a simple animation to project cards on scroll
+    const projectCards = document.querySelectorAll('.project-card');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = 'fadeInUp 0.5s ease-out forwards';
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    projectCards.forEach(card => {
+        card.style.opacity = '0';
+        observer.observe(card);
+    });
+});
+
+// Add keyframes for the animation in CSS
+const styleSheet = document.createElement("style");
+styleSheet.type = "text/css";
+styleSheet.innerText = `
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
-
-// Another simple example: log a message when the page loads
-window.onload = function() {
-    console.log('The page has fully loaded!');
-};
-
-// You can also greet the user with a message
-console.log('Script loaded successfully!');
+`;
+document.head.appendChild(styleSheet);
