@@ -1,29 +1,64 @@
+/* ===== Google Fonts Import ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap');
+
+/* ===== Root Variables (New Dark Theme) ===== */
 :root {
-    --primary-color: #3498db;
-    --secondary-color: #2c3e50;
-    --background-color: #ecf0f1;
-    --text-color: #34495e;
-    --card-bg-color: #ffffff;
+    --primary-color: #2dd4bf; /* Vibrant Teal */
+    --primary-hover-color: #5eead4;
+    --background-color: #111827; /* Dark Navy/Charcoal */
+    --card-bg-color: #1f2937; /* Lighter Dark Gray */
+    --text-color: #d1d5db; /* Light Gray for body */
+    --heading-color: #f9fafb; /* Off-white for headings */
+    --header-bg-color: rgba(20, 26, 40, 0.7); /* Semi-transparent */
 }
 
+/* ===== General Body & Typography ===== */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: var(--background-color);
     color: var(--text-color);
-    line-height: 1.6;
+    line-height: 1.7;
+    font-weight: 400;
 }
 
+h1, h2, h3 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--heading-color);
+    font-weight: 700;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 3.5rem;
+    position: relative;
+}
+
+/* Underline effect for section titles */
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--primary-color);
+    margin: 1rem auto 0;
+    border-radius: 2px;
+}
+
+/* ===== Header & Navigation ===== */
 header {
-    background-color: var(--secondary-color);
-    color: var(--background-color);
+    background-color: var(--header-bg-color);
+    backdrop-filter: blur(10px); /* Glassmorphism effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
     padding: 1rem 0;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 nav {
@@ -31,25 +66,29 @@ nav {
     justify-content: space-between;
     align-items: center;
     width: 90%;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
 nav .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     margin: 0;
     padding: 0;
 }
 
 nav a {
-    color: var(--background-color);
+    color: var(--heading-color);
     text-decoration: none;
+    font-weight: 500;
     transition: color 0.3s ease;
 }
 
@@ -57,59 +96,83 @@ nav a:hover {
     color: var(--primary-color);
 }
 
+/* ===== Main Content Sections ===== */
 main {
-    padding-top: 60px; /* Adjust based on header height */
+    padding-top: 80px; /* Adjust for taller header */
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px; /* Constrains width on very large screens */
+    margin: 5rem auto;
+}
+
+/* ===== Hero Section ===== */
+@keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 #hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
-    height: 100vh;
+    background: linear-gradient(-45deg, #111827, #1f2937, #0b111c);
+    background-size: 400% 400%;
+    animation: gradient-animation 15s ease infinite;
+    min-height: calc(100vh - 80px); /* Full viewport height minus header */
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: #fff;
+    overflow: hidden;
+}
+
+@keyframes fade-in-down {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .hero-text h1 {
-    font-size: 3.5rem;
+    font-size: clamp(2.5rem, 5vw, 4.5rem); /* Responsive font size */
     margin-bottom: 1rem;
+    animation: fade-in-down 1s ease-out forwards;
 }
 
 .hero-text p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    animation: fade-in-down 1s ease-out 0.5s forwards;
 }
 
 .btn {
     background-color: var(--primary-color);
-    color: #fff;
-    padding: 0.8rem 1.5rem;
+    color: var(--background-color);
+    padding: 1rem 2rem;
     text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 20px rgba(45, 212, 191, 0.4);
 }
 
 .btn:hover {
-    background-color: #2980b9;
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(45, 212, 191, 0.6);
 }
 
-.container {
-    width: 80%;
-    margin: 4rem auto;
-}
-
-h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: var(--secondary-color);
-}
-
+/* ===== About Section ===== */
 #about .about-content {
     display: flex;
     align-items: center;
-    gap: 3rem;
+    gap: 4rem;
+    background-color: var(--card-bg-color);
+    padding: 3rem;
+    border-radius: 12px;
 }
 
 #about .about-text {
@@ -124,88 +187,48 @@ h2 {
 #about .about-image img {
     max-width: 100%;
     border-radius: 50%;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 3px solid var(--primary-color);
 }
 
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.project-card {
-    background-color: var(--card-bg-color);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease;
-    text-align: center;
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-}
-
-.project-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.project-card h3 {
-    margin: 1.5rem 0 1rem;
-    color: var(--primary-color);
-}
-
-.project-card p {
-    padding: 0 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.project-card .btn {
-    display: inline-block;
-    margin-bottom: 1.5rem;
-}
-
+/* ===== Contact Section ===== */
 #contact {
     text-align: center;
 }
 
-.contact-info {
-    margin-top: 2rem;
-}
-
 .contact-info p {
     font-size: 1.1rem;
-    margin: 0.5rem 0;
+    margin: 1rem 0;
 }
 
 .contact-info a {
     color: var(--primary-color);
     text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 .contact-info a:hover {
+    color: var(--primary-hover-color);
     text-decoration: underline;
 }
 
+/* ===== Footer ===== */
 footer {
     text-align: center;
     padding: 2rem 0;
-    background-color: var(--secondary-color);
-    color: var(--background-color);
+    background-color: var(--card-bg-color);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 4rem;
 }
 
+/* ===== Responsive Design ===== */
 @media (max-width: 768px) {
     nav ul {
-        display: none; /* Simple responsive navigation */
-    }
-
-    #hero h1 {
-        font-size: 2.5rem;
+        display: none; /* On mobile, you might want a hamburger menu instead */
     }
 
     #about .about-content {
         flex-direction: column;
+        padding: 2rem;
     }
 }
