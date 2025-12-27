@@ -74,8 +74,14 @@
                 <h2>Get in Touch</h2>
                 <p>I am always open to discussing new ideas, collaborations, or how Anpago can help solve your challenges. Feel free to reach out.</p>
                 <div class="contact-form-container">
-                    <form action="https://formspree.io/f/anpago@pm.me" method="POST" class="contact-form">
-                        <!-- Note: You may need to register/verify this email with Formspree for the form to work initially -->
+                    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+                        <input type="hidden" name="access_key" value="1ce2ba09-4f1e-4c93-938d-8637d9682521">
+                        <input type="hidden" name="subject" value="New Submission from Anpago Website">
+                        <input type="hidden" name="from_name" value="Anpago Website">
+
+                        <!-- Spam Protection (Honeypot) -->
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" required placeholder="Your Name">
