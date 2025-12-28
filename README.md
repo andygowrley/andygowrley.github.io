@@ -1,22 +1,22 @@
-# Anpago.co.uk - Andy Gowrley's Personal Website
+# Anpago.co.uk - Intelligent Automation Solutions
 
 ---
 
 ## 👋 Welcome!
 
-This repository hosts the source code for my personal website, **Anpago.co.uk**. This site serves as a central hub for my online presence, showcasing my projects, interests, and providing a way to connect with me.
+This repository hosts the source code for **Anpago.co.uk**, a personal business website dedicated to **Intelligent Automation**. The site showcases solutions for automating mundane tasks to help businesses and individuals reclaim their time.
 
 ---
 
 ## 🚀 About This Site
 
-* **Purpose:** To share my work, thoughts, and provide information about my professional background.
+* **Purpose:** To showcase automation projects, explain the mission of Anpago, and provide a channel for potential clients to get in touch.
 * **Technologies Used:**
-    * **HTML5:** For structuring the content.
-    * **CSS3:** For styling and visual presentation.
-    * **JavaScript:** For interactive elements and dynamic behavior.
-    * **GitHub Pages:** For reliable and free hosting.
-* **Future Plans:** I plan to regularly update this site with new projects, articles, and potentially a blog section.
+    * **HTML5:** For semantic structure (including new `section` elements for Projects).
+    * **CSS3:** For the dark-themed, glassmorphism design and responsive grid layouts.
+    * **JavaScript:** For the mobile menu toggle and smooth scrolling.
+    * **Web3Forms:** For the serverless contact form backend (no server required).
+    * **GitHub Pages:** For fast, free hosting.
 
 ---
 
@@ -24,41 +24,48 @@ This repository hosts the source code for my personal website, **Anpago.co.uk**.
 
 You can visit the live website here: **[https://anpago.co.uk](https://anpago.co.uk)**
 
-*(Note: It may take some time for DNS changes to propagate fully after initial setup.)*
-
 ---
 
-## 🛠️ Setup and Development (For Contributors/Reference)
+## 🛠️ Development & Configuration
 
-While this is a personal site, the following steps outline how it's set up, which might be useful for my own reference or if I ever decide to collaborate with others.
-
+### Local Setup
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/andygowrley/andygowrley.github.io.git](https://github.com/andygowrley/andygowrley.github.io.git)
-    ```
-2.  **Navigate into the directory:**
-    ```bash
+    git clone https://github.com/andygowrley/andygowrley.github.io.git
     cd andygowrley.github.io
     ```
-3.  **Open `index.html`:** You can open the `index.html` file directly in your web browser to view the site locally.
-4.  **Make changes:** Edit the `index.html`, `style.css`, and `script.js` files as needed.
-5.  **Commit and Push:**
+2.  **Run locally:**
+    You can simply open `index.html` in your browser, or run a simple local server:
     ```bash
-    git add .
-    git commit -m "Your descriptive commit message"
-    git push origin main
+    python3 -m http.server
     ```
+
+### Contact Form Configuration
+The contact form uses **Web3Forms** to send emails directly to `anpago@pm.me` without requiring a backend.
+
+*   **Access Key:** The form is configured with a specific Access Key in `index.html`.
+*   **To Update the Email:** If you need to change the recipient email in the future:
+    1.  Go to [Web3Forms](https://web3forms.com/).
+    2.  Enter the new email address to generate a new Access Key.
+    3.  Update the `value` attribute of the `access_key` input in `index.html`.
 
 ---
 
-## 🤝 Connect with Me
+## 📂 Project Structure
 
-* **GitHub:** [https://github.com/andygowrley](https://github.com/andygowrley)
-* **LinkedIn:** [Your LinkedIn Profile URL Here] (e.g., `https://www.linkedin.com/in/yourname/`)
-* **Email:** [your.email@example.com](mailto:your.email@example.com) (Optional: Only if you want to make it public)
+*   `index.html`: Main landing page containing Home, About, Projects, and Contact sections.
+*   `style.css`: Contains all styles, including the dark theme variables and responsive media queries.
+*   `script.js`: Handles the mobile navigation toggle and scroll animations.
+*   `favicon.svg`: Custom site icon.
+
+---
+
+## 🤝 Connect
+
+To prevent spam, direct email addresses and social links are hidden. Please use the **Contact Form** on the website to get in touch regarding collaborations or automation challenges.
 
 ---
 
 ## © License
 
-This project is open source and available under the [MIT License](LICENSE). *(Note: You might want to create a separate `LICENSE` file if you want to formally license your code.)*Welcome
+This project is open source and available under the [MIT License](LICENSE).
